@@ -5,7 +5,7 @@ import zio.{ZIO, ZIOAppDefault}
 import zhttp.service.Server
 
 object Main extends ZIOAppDefault {
-  val app: HttpApp[Any, Nothing] = Http.text("Hello World!")
+  val app: HttpApp[Any, Nothing] = Http.text("Hello, world!")
 
   override def run: ZIO[Any, Any, Any] = Server.start(8080, app).exitCode
 }
