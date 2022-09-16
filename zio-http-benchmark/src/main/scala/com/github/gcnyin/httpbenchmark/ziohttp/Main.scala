@@ -1,8 +1,8 @@
-package com.github.gcnyin.httpbenchmark.http4s
+package com.github.gcnyin.httpbenchmark.ziohttp
 
 import zhttp.http.{Http, HttpApp}
-import zio.{ZIO, ZIOAppDefault}
 import zhttp.service.Server
+import zio.{ZIO, ZIOAppDefault}
 
 object Main extends ZIOAppDefault {
   val app: HttpApp[Any, Nothing] = Http.text("Hello, world!")
