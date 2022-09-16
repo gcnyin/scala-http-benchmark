@@ -7,7 +7,7 @@ lazy val root = (project in file("."))
     version := projectVersion,
     scalaVersion := "2.13.8"
   )
-  .aggregate(`akka-benchmark`, `http4s-benchmark`)
+  .aggregate(`akka-benchmark`, `http4s-benchmark`, `zio-http-benchmark`)
 
 val LogbackVersion = "1.2.11"
 val AkkaVersion = "2.6.20"
@@ -28,8 +28,8 @@ lazy val `akka-benchmark` = (project in file("akka-benchmark"))
     )
   )
 
-val Http4sVersion = "0.23.15"
-val CirceVersion = "0.14.2"
+val Http4sVersion = "0.23.16"
+val CirceVersion = "0.14.3"
 
 lazy val `http4s-benchmark` = (project in file("http4s-benchmark"))
   .enablePlugins(JavaServerAppPackaging)
@@ -45,5 +45,17 @@ lazy val `http4s-benchmark` = (project in file("http4s-benchmark"))
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "io.circe" %% "circe-generic" % CirceVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
+    )
+  )
+
+lazy val `zio-http-benchmark` = (project in file("zio-http-benchmark"))
+  .enablePlugins(JavaServerAppPackaging)
+  .settings(
+    name := "http4s-benchmark",
+    organization := "com.github.gcnyin",
+    version := projectVersion,
+    scalaVersion := "2.13.8",
+    libraryDependencies ++= Seq(
+      "io.d11" %% "zhttp" % "2.0.0-RC11"
     )
   )
