@@ -1,41 +1,32 @@
 package com.github.gcnyin.httpbenchmark.http4s
 
-import cats.effect.{ExitCode, IO, IOApp}
+import cats.effect._
+import cats.syntax.all._
+import com.comcast.ip4s._
+import fs2.Stream
+import org.http4s.HttpRoutes
+import org.http4s.dsl.Http4sDsl
+import org.http4s.ember.server.EmberServerBuilder
 
 object Main extends IOApp {
-  override def run(args: List[String]): IO[ExitCode] =
-    Http4sdemoServer.stream[IO].compile.drain.as(ExitCode.Success)
-
-  import cats.effect.{Async, Resource, Sync}
-  import cats.syntax.all._
-  import com.comcast.ip4s._
-  import fs2.Stream
-  import org.http4s.HttpRoutes
-  import org.http4s.dsl.Http4sDsl
-  import org.http4s.ember.server.EmberServerBuilder
+  override def run(args: List[String]): IO[ExitCode] = {
+    Http4sdemoServer.runForever(org.http4s.dsl.io).as(ExitCode.Success)
+  }
 
   object Http4sdemoServer {
-    def stream[F[_]: Async]: Stream[F, Nothing] = {
-      for {
-        exitCode <- Stream.resource(
-          EmberServerBuilder
-            .default[F]
-            .withHost(host = ipv4"0.0.0.0")
-            .withPort(port = port"8080")
-            .withHttpApp(routes[F].orNotFound)
-            .build >>
-            Resource.eval(Async[F].never)
-        )
-      } yield exitCode
-    }.drain
+    def runForever[F[_]: Async](dsl: Http4sDsl[F]): F[Nothing] = {
+      EmberServerBuilder
+        .default[F]
+        .withHost(host = ipv4"0.0.0.0")
+        .withPort(port = port"8080")
+        .withHttpApp(routes(dsl).orNotFound)
+        .build.useForever
+    }
 
-    def routes[F[_]: Sync]: HttpRoutes[F] = {
-      val dsl = new Http4sDsl[F] {}
+    def routes[F[_]: Sync](dsl: Http4sDsl[F]): HttpRoutes[F] = {
       import dsl._
       HttpRoutes.of[F] { case GET -> Root =>
-        for {
-          resp <- Ok("Hello, world!")
-        } yield resp
+         Ok("Hello, world!")
       }
     }
   }
