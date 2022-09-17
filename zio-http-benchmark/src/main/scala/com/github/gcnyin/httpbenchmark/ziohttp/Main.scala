@@ -1,11 +1,13 @@
 package com.github.gcnyin.httpbenchmark.ziohttp
 
-import zhttp.http.{Http, HttpApp}
+import zhttp.http._
 import zhttp.service.Server
-import zio.{ZIO, ZIOAppDefault}
+import zio._
 
 object Main extends ZIOAppDefault {
-  val app: HttpApp[Any, Nothing] = Http.text("Hello, world!")
+  val app: Http[Any, Nothing, Request, Response] = Http.collect[Request] {
+    case Method.GET -> !! / "" => Response.text("Hello, world!")
+  }
 
   override def run: ZIO[Any, Any, Any] = Server.start(8080, app).exitCode
 }
