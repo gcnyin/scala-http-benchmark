@@ -3,7 +3,9 @@
 ## Build
 
 ```
-sbt akka-http-benchmark/docker:publishLocal http4s-benchmark/docker:publishLocal zio-http-benchmark/docker:publishLocal
+sbt akka-http-benchmark/docker:publishLocal \
+    http4s-ce3-benchmark/docker:publishLocal \
+    zio-http-benchmark/docker:publishLocal
 ```
 
 ## Run
@@ -11,11 +13,12 @@ sbt akka-http-benchmark/docker:publishLocal http4s-benchmark/docker:publishLocal
 Example
 
 ```
-docker run -d --name akka-http-benchmark --cpus="1" --memory="1024m" -p 8080:8080 akka-http-benchmark:1.0-SNAPSHOT
+docker run -d --name akka-http-benchmark --cpus="1" --memory="1024m" \
+    -p 8080:8080 akka-http-benchmark:1.0-SNAPSHOT
 ```
 
 ## Test
 
 ```
-wrk -t2 -c100 -d10s "http://127.0.0.1:8080"
+wrk -t5 -c100 -d10s "http://127.0.0.1:8080"
 ```
