@@ -71,3 +71,26 @@ lazy val `zio-http-benchmark` = (project in file("zio-http-benchmark"))
     dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
     dockerExposedPorts ++= Seq(8080)
   )
+
+lazy val `zio-http4s-benchmark` = (project in file("zio-http4s-benchmark"))
+  .enablePlugins(JavaServerAppPackaging)
+  .settings(
+    name := "zio-http4s-benchmark",
+    organization := "com.github.gcnyin",
+    version := projectVersion,
+    scalaVersion := "2.13.8",
+    libraryDependencies ++= Seq(
+      "org.http4s" %% "http4s-ember-server" % Http4sVersion,
+      "org.http4s" %% "http4s-ember-client" % Http4sVersion,
+      "org.http4s" %% "http4s-circe" % Http4sVersion,
+      "org.http4s" %% "http4s-dsl" % Http4sVersion,
+      "io.circe" %% "circe-generic" % CirceVersion,
+      "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime,
+      "dev.zio" %% "zio" % "2.0.0",
+      "dev.zio" %% "zio-interop-cats" % "3.3.0"
+    ),
+    Docker / packageName := "zio-http4s-benchmark",
+    Docker / version := projectVersion,
+    dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
+    dockerExposedPorts ++= Seq(8080)
+  )
