@@ -7,7 +7,7 @@ lazy val root = (project in file("."))
     version := projectVersion,
     scalaVersion := "2.13.8"
   )
-  .aggregate(`akka-http-benchmark`, `http4s-ce3-benchmark`, `zio-http-benchmark`,`http4s-zio2-benchmark`)
+  .aggregate(`akka-http-benchmark`, `http4s-ce3-benchmark`, `zio-http-benchmark`, `http4s-zio2-benchmark`)
 
 val LogbackVersion = "1.2.11"
 val AkkaVersion = "2.6.20"
