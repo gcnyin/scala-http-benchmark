@@ -7,7 +7,7 @@ lazy val root = (project in file("."))
     version := projectVersion,
     scalaVersion := "2.13.8"
   )
-  .aggregate(`akka-http-benchmark`, `http4s-benchmark`, `zio-http-benchmark`)
+  .aggregate(`akka-http-benchmark`, `http4s-ce3-benchmark`, `zio-http-benchmark`)
 
 val LogbackVersion = "1.2.11"
 val AkkaVersion = "2.6.20"
@@ -35,10 +35,10 @@ lazy val `akka-http-benchmark` = (project in file("akka-http-benchmark"))
 val Http4sVersion = "0.23.16"
 val CirceVersion = "0.14.3"
 
-lazy val `http4s-benchmark` = (project in file("http4s-benchmark"))
+lazy val `http4s-ce3-benchmark` = (project in file("http4s-ce3-benchmark"))
   .enablePlugins(JavaServerAppPackaging)
   .settings(
-    name := "http4s-benchmark",
+    name := "http4s-ce3-benchmark",
     organization := "com.github.gcnyin",
     version := projectVersion,
     scalaVersion := "2.13.8",
@@ -50,7 +50,7 @@ lazy val `http4s-benchmark` = (project in file("http4s-benchmark"))
       "io.circe" %% "circe-generic" % CirceVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
     ),
-    Docker / packageName := "http4s-benchmark",
+    Docker / packageName := "http4s-ce3-benchmark",
     Docker / version := projectVersion,
     dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
     dockerExposedPorts ++= Seq(8080)
