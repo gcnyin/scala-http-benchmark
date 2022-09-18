@@ -20,13 +20,14 @@ object Main extends IOApp {
         .withHost(host = ipv4"0.0.0.0")
         .withPort(port = port"8080")
         .withHttpApp(routes(dsl).orNotFound)
-        .build.useForever
+        .build
+        .useForever
     }
 
     def routes[F[_]: Sync](dsl: Http4sDsl[F]): HttpRoutes[F] = {
       import dsl._
       HttpRoutes.of[F] { case GET -> Root =>
-         Ok("Hello, world!")
+        Ok("Hello, world!")
       }
     }
   }
