@@ -3,9 +3,7 @@
 ## Build
 
 ```
-sbt akka-http-benchmark/docker:publishLocal \
-    http4s-ce3-benchmark/docker:publishLocal \
-    zio-http-benchmark/docker:publishLocal
+sbt docker:publishLocal
 ```
 
 ## Run
