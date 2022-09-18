@@ -7,7 +7,7 @@ lazy val root = (project in file("."))
     version := projectVersion,
     scalaVersion := "2.13.8"
   )
-  .aggregate(`akka-http-benchmark`, `http4s-ce3-benchmark`, `zio-http-benchmark`)
+  .aggregate(`akka-http-benchmark`, `http4s-ce3-benchmark`, `zio-http-benchmark`,`http4s-zio2-benchmark`)
 
 val LogbackVersion = "1.2.11"
 val AkkaVersion = "2.6.20"
@@ -72,10 +72,10 @@ lazy val `zio-http-benchmark` = (project in file("zio-http-benchmark"))
     dockerExposedPorts ++= Seq(8080)
   )
 
-lazy val `zio-http4s-benchmark` = (project in file("zio-http4s-benchmark"))
+lazy val `http4s-zio2-benchmark` = (project in file("http4s-zio2-benchmark"))
   .enablePlugins(JavaServerAppPackaging)
   .settings(
-    name := "zio-http4s-benchmark",
+    name := "http4s-zio2-benchmark",
     organization := "com.github.gcnyin",
     version := projectVersion,
     scalaVersion := "2.13.8",
@@ -89,7 +89,7 @@ lazy val `zio-http4s-benchmark` = (project in file("zio-http4s-benchmark"))
       "dev.zio" %% "zio" % "2.0.0",
       "dev.zio" %% "zio-interop-cats" % "3.3.0"
     ),
-    Docker / packageName := "zio-http4s-benchmark",
+    Docker / packageName := "http4s-zio2-benchmark",
     Docker / version := projectVersion,
     dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
     dockerExposedPorts ++= Seq(8080)
