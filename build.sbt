@@ -7,7 +7,14 @@ lazy val root = (project in file("."))
     version := projectVersion,
     scalaVersion := "2.13.8"
   )
-  .aggregate(`akka-http-benchmark`, `http4s-ce3-benchmark`, `zio-http-benchmark`, `http4s-zio2-benchmark`, `finch-benchmark`)
+  .aggregate(
+    `akka-http-benchmark`,
+    `http4s-ce3-benchmark`,
+    `zio-http-benchmark`,
+    `http4s-zio2-benchmark`,
+    `finch-benchmark`,
+    `finatra-http-benchmark`
+  )
 
 val LogbackVersion = "1.2.11"
 val AkkaVersion = "2.6.20"
@@ -107,6 +114,23 @@ lazy val `finch-benchmark` = (project in file("finch-benchmark"))
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
     ),
     Docker / packageName := "finch-benchmark",
+    Docker / version := projectVersion,
+    dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
+    dockerExposedPorts ++= Seq(8080)
+  )
+
+lazy val `finatra-http-benchmark` = (project in file("finatra-http"))
+  .enablePlugins(JavaServerAppPackaging)
+  .settings(
+    name := "finatra-http",
+    organization := "com.github.gcnyin",
+    version := projectVersion,
+    scalaVersion := "2.13.8",
+    libraryDependencies ++= Seq(
+      "com.twitter" %% "finatra-http-server" % "22.7.0",
+      "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
+    ),
+    Docker / packageName := "finatra-http",
     Docker / version := projectVersion,
     dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
     dockerExposedPorts ++= Seq(8080)
