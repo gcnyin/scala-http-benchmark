@@ -5,7 +5,7 @@ import zhttp.service.Server
 import zio._
 
 object Main extends ZIOAppDefault {
-  val app: Http[Any, Nothing, Request, Response] = Http.collect[Request] { case Method.GET -> !! / "" =>
+  val app: Http[Any, Nothing, Request, Response] = Http.collect[Request] { case Method.GET -> !! =>
     Response.text("Hello, world!")
   }
 

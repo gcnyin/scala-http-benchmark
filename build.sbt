@@ -7,7 +7,7 @@ lazy val root = (project in file("."))
     version := projectVersion,
     scalaVersion := "2.13.8"
   )
-  .aggregate(`akka-http-benchmark`, `http4s-ce3-benchmark`, `zio-http-benchmark`, `http4s-zio2-benchmark`)
+  .aggregate(`akka-http-benchmark`, `http4s-ce3-benchmark`, `zio-http-benchmark`, `http4s-zio2-benchmark`, `finch-benchmark`)
 
 val LogbackVersion = "1.2.11"
 val AkkaVersion = "2.6.20"
@@ -86,10 +86,27 @@ lazy val `http4s-zio2-benchmark` = (project in file("http4s-zio2-benchmark"))
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "io.circe" %% "circe-generic" % CirceVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime,
-      "dev.zio" %% "zio" % "2.0.0",
+      "dev.zio" %% "zio" % "2.0.2",
       "dev.zio" %% "zio-interop-cats" % "3.3.0"
     ),
     Docker / packageName := "http4s-zio2-benchmark",
+    Docker / version := projectVersion,
+    dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
+    dockerExposedPorts ++= Seq(8080)
+  )
+
+lazy val `finch-benchmark` = (project in file("finch-benchmark"))
+  .enablePlugins(JavaServerAppPackaging)
+  .settings(
+    name := "finch-benchmark",
+    organization := "com.github.gcnyin",
+    version := projectVersion,
+    scalaVersion := "2.13.8",
+    libraryDependencies ++= Seq(
+      "com.github.finagle" %% "finch-core" % "0.34.0",
+      "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
+    ),
+    Docker / packageName := "finch-benchmark",
     Docker / version := projectVersion,
     dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
     dockerExposedPorts ++= Seq(8080)
