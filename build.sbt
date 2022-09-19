@@ -119,10 +119,10 @@ lazy val `finch-benchmark` = (project in file("finch-benchmark"))
     dockerExposedPorts ++= Seq(8080)
   )
 
-lazy val `finatra-http-benchmark` = (project in file("finatra-http"))
+lazy val `finatra-http-benchmark` = (project in file("finatra-http-benchmark"))
   .enablePlugins(JavaServerAppPackaging)
   .settings(
-    name := "finatra-http",
+    name := "finatra-http-benchmark",
     organization := "com.github.gcnyin",
     version := projectVersion,
     scalaVersion := "2.13.8",
@@ -130,7 +130,7 @@ lazy val `finatra-http-benchmark` = (project in file("finatra-http"))
       "com.twitter" %% "finatra-http-server" % "22.7.0",
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
     ),
-    Docker / packageName := "finatra-http",
+    Docker / packageName := "finatra-http-benchmark",
     Docker / version := projectVersion,
     dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
     dockerExposedPorts ++= Seq(8080)
