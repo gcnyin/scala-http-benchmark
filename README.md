@@ -1,5 +1,7 @@
 # scala-http-benchmark
 
+NOTE! This benchmark is for reference only and does not represent real-world application performance.
+
 ## Build
 
 ```
