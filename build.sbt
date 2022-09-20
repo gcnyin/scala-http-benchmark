@@ -5,7 +5,7 @@ lazy val root = (project in file("."))
     name := "scala-http-benchmark",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.8"
+    scalaVersion := "2.13.9"
   )
   .aggregate(
     `akka-http-benchmark`,
@@ -16,7 +16,7 @@ lazy val root = (project in file("."))
     `finatra-http-benchmark`
   )
 
-val LogbackVersion = "1.2.11"
+val LogbackVersion = "1.4.1"
 val AkkaVersion = "2.6.20"
 val AkkaHttpVersion = "10.2.10"
 
@@ -26,7 +26,7 @@ lazy val `akka-http-benchmark` = (project in file("akka-http-benchmark"))
     name := "akka-http-benchmark",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.8",
+    scalaVersion := "2.13.9",
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
       "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
@@ -48,7 +48,7 @@ lazy val `http4s-ce3-benchmark` = (project in file("http4s-ce3-benchmark"))
     name := "http4s-ce3-benchmark",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.8",
+    scalaVersion := "2.13.9",
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-ember-client" % Http4sVersion,
@@ -69,7 +69,7 @@ lazy val `zio-http-benchmark` = (project in file("zio-http-benchmark"))
     name := "zio-http-benchmark",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.8",
+    scalaVersion := "2.13.9",
     libraryDependencies ++= Seq(
       "io.d11" %% "zhttp" % "2.0.0-RC11"
     ),
@@ -85,7 +85,7 @@ lazy val `http4s-zio2-benchmark` = (project in file("http4s-zio2-benchmark"))
     name := "http4s-zio2-benchmark",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.8",
+    scalaVersion := "2.13.9",
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-ember-client" % Http4sVersion,
@@ -108,7 +108,7 @@ lazy val `finch-benchmark` = (project in file("finch-benchmark"))
     name := "finch-benchmark",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.8",
+    scalaVersion := "2.13.9",
     libraryDependencies ++= Seq(
       "com.github.finagle" %% "finch-core" % "0.34.0",
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
@@ -125,7 +125,7 @@ lazy val `finatra-http-benchmark` = (project in file("finatra-http-benchmark"))
     name := "finatra-http-benchmark",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.8",
+    scalaVersion := "2.13.9",
     libraryDependencies ++= Seq(
       "com.twitter" %% "finatra-http-server" % "22.7.0",
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
