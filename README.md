@@ -8,6 +8,28 @@ NOTE! This benchmark is for reference only and does not represent real-world app
 sbt docker:publishLocal
 ```
 
+## Build `http4s-ce3-js-benchmark`
+
+For `http4s-ce3-js-benchmark`, to build scala javascript file
+
+```
+sbt http4s-ce3-js-benchmark/fullLinkJS
+```
+
+The result javascript file is `http4s-ce3-js-benchmark/target/scala-2.13/http4s-ce3-js-benchmark-opt/main.js`.
+
+If you want to run it by `node`
+
+```
+node http4s-ce3-js-benchmark/target/scala-2.13/http4s-ce3-js-benchmark-opt/main.js
+```
+
+## Build `http4s-ce3-js-benchmark` docker image
+
+```
+./http4s-ce3-js-benchmark/build.sh
+```
+
 ## Run
 
 Example
