@@ -1,4 +1,4 @@
-val projectVersion = "1.0-SNAPSHOT"
+val projectVersion = "0.1.0"
 
 lazy val root = (project in file("."))
   .settings(
@@ -13,7 +13,8 @@ lazy val root = (project in file("."))
     `zio-http-benchmark`,
     `http4s-zio2-benchmark`,
     `finch-benchmark`,
-    `finatra-http-benchmark`
+    `finatra-http-benchmark`,
+    `http4s-ce3-js-benchmark`
   )
 
 val LogbackVersion = "1.4.1"
@@ -134,4 +135,27 @@ lazy val `finatra-http-benchmark` = (project in file("finatra-http-benchmark"))
     Docker / version := projectVersion,
     dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
     dockerExposedPorts ++= Seq(8080)
+  )
+
+lazy val `http4s-ce3-js-benchmark` = (project in file("http4s-ce3-js-benchmark"))
+  .enablePlugins(ScalaJSPlugin)
+  .settings(
+    name := "http4s-ce3-js-benchmark",
+    organization := "com.github.gcnyin",
+    version := projectVersion,
+    scalaVersion := "2.13.9",
+    scalaJSUseMainModuleInitializer := true,
+    libraryDependencies ++= Seq(
+      "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
+      "org.http4s" %%% "http4s-ember-client" % Http4sVersion,
+      "org.http4s" %%% "http4s-circe" % Http4sVersion,
+      "org.http4s" %%% "http4s-dsl" % Http4sVersion,
+      "io.circe" %%% "circe-generic" % CirceVersion,
+    ),
+    scalaJSLinkerConfig ~= {
+      _.withModuleKind(ModuleKind.ESModule)
+    },
+    scalaJSLinkerConfig ~= {
+      _.withModuleKind(ModuleKind.CommonJSModule)
+    }
   )
