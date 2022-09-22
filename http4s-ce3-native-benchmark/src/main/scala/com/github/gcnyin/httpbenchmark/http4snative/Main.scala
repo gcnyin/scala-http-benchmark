@@ -2,11 +2,12 @@ package com.github.gcnyin.httpbenchmark.http4snative
 
 import cats.effect._
 import com.comcast.ip4s._
+import epollcat.EpollApp
 import org.http4s.HttpRoutes
 import org.http4s.dsl.Http4sDsl
 import org.http4s.ember.server.EmberServerBuilder
 
-object Main extends IOApp {
+object Main extends EpollApp {
   override def run(args: List[String]): IO[ExitCode] = {
     Http4sdemoServer.runForever(org.http4s.dsl.io).as(ExitCode.Success)
   }
