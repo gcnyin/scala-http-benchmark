@@ -14,7 +14,8 @@ lazy val root = (project in file("."))
     `http4s-zio2-benchmark`,
     `finch-benchmark`,
     `finatra-http-benchmark`,
-    `http4s-ce3-js-benchmark`
+    `http4s-ce3-js-benchmark`,
+    `http4s-ce3-native-benchmark`
   )
 
 val LogbackVersion = "1.4.1"
@@ -52,10 +53,7 @@ lazy val `http4s-ce3-benchmark` = (project in file("http4s-ce3-benchmark"))
     scalaVersion := "2.13.9",
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
-      "org.http4s" %% "http4s-ember-client" % Http4sVersion,
-      "org.http4s" %% "http4s-circe" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
-      "io.circe" %% "circe-generic" % CirceVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
     ),
     Docker / packageName := "http4s-ce3-benchmark",
@@ -89,10 +87,7 @@ lazy val `http4s-zio2-benchmark` = (project in file("http4s-zio2-benchmark"))
     scalaVersion := "2.13.9",
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
-      "org.http4s" %% "http4s-ember-client" % Http4sVersion,
-      "org.http4s" %% "http4s-circe" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
-      "io.circe" %% "circe-generic" % CirceVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime,
       "dev.zio" %% "zio" % "2.0.2",
       "dev.zio" %% "zio-interop-cats" % "3.3.0"
@@ -147,10 +142,7 @@ lazy val `http4s-ce3-js-benchmark` = (project in file("http4s-ce3-js-benchmark")
     scalaJSUseMainModuleInitializer := true,
     libraryDependencies ++= Seq(
       "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
-      "org.http4s" %%% "http4s-ember-client" % Http4sVersion,
-      "org.http4s" %%% "http4s-circe" % Http4sVersion,
-      "org.http4s" %%% "http4s-dsl" % Http4sVersion,
-      "io.circe" %%% "circe-generic" % CirceVersion,
+      "org.http4s" %%% "http4s-dsl" % Http4sVersion
     ),
     scalaJSLinkerConfig ~= {
       _.withModuleKind(ModuleKind.ESModule)
@@ -158,4 +150,17 @@ lazy val `http4s-ce3-js-benchmark` = (project in file("http4s-ce3-js-benchmark")
     scalaJSLinkerConfig ~= {
       _.withModuleKind(ModuleKind.CommonJSModule)
     }
+  )
+
+lazy val `http4s-ce3-native-benchmark` = (project in file("http4s-ce3-native-benchmark"))
+  .enablePlugins(ScalaNativePlugin)
+  .settings(
+    name := "http4s-ce3-native-benchmark",
+    organization := "com.github.gcnyin",
+    version := projectVersion,
+    scalaVersion := "2.13.9",
+    libraryDependencies ++= Seq(
+      "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
+      "org.http4s" %%% "http4s-dsl" % Http4sVersion
+    )
   )

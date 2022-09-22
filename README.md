@@ -2,6 +2,8 @@
 
 NOTE! This benchmark is for reference only and does not represent real-world application performance.
 
+`http4s-ce3-native` is not available for now.
+
 ## Build
 
 ```
