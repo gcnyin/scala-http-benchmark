@@ -6,6 +6,12 @@ NOTE! This benchmark is for reference only and does not represent real-world app
 
 ## Build
 
+### Build http4s native
+```bash
+bash build/build-http4s-native.sh
+```
+
+### Build other modules
 ```
 sbt docker:publishLocal
 ```

@@ -1,4 +1,6 @@
 val projectVersion = "0.1.0"
+import scala.scalanative.build._
+import com.typesafe.sbt.packager.docker._
 
 lazy val root = (project in file("."))
   .settings(
@@ -161,6 +163,5 @@ lazy val `http4s-ce3-native-benchmark` = (project in file("http4s-ce3-native-ben
     scalaVersion := "2.13.9",
     libraryDependencies ++= Seq(
       "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
-      "org.http4s" %%% "http4s-dsl" % Http4sVersion
-    )
-  )
+      "org.http4s" %%% "http4s-dsl" % Http4sVersion,
+      "com.armanbilge" %%% "epollcat" % "0.1.1"))
