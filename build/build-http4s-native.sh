@@ -1,5 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-cd $SCRIPT_DIR/..
-docker build . -t http4s-ce3-native-benchmark:1.0-SNAPSHOT -f  build/http4s-native/Dockerfile
+cd $(dirname $0)
+
+echo $(pwd)
+
+docker build . -t http4s-ce3-native-benchmark:0.1.0 -f ./http4s-native/Dockerfile
