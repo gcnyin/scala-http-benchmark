@@ -5,9 +5,11 @@ import zhttp.service.Server
 import zio._
 
 object Main extends ZIOAppDefault {
-  val app: Http[Any, Nothing, Request, Response] = Http.collect[Request] { case Method.GET -> !! =>
-    Response.text("Hello, world!")
+  def app(frozen: Response): Http[Any, Nothing, Request, Response] = Http.collect[Request] { case Method.GET -> !! =>
+    frozen
   }
 
-  override def run: ZIO[Any, Any, Any] = Server.start(8080, app).exitCode
+  override def run: ZIO[Any, Any, Any] = 
+    Response.text("Hello, world!").freeze.flatmap(frozen => Server.start(8080, app(frozen)))
+      .exitCode
 }
