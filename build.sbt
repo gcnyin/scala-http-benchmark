@@ -168,7 +168,7 @@ lazy val `http4s-native` = (project in file("http4s-native"))
   )
 
 lazy val `vertx-web` = (project in file("vertx-web"))
-  .enablePlugins(ScalaNativePlugin)
+  .enablePlugins(JavaServerAppPackaging)
   .settings(
     name := "vertx-web",
     organization := "com.github.gcnyin",
