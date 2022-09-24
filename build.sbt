@@ -177,5 +177,9 @@ lazy val `vertx-web` = (project in file("vertx-web"))
     libraryDependencies ++= Seq(
       "io.vertx" % "vertx-web" % "4.3.3",
       "io.netty" % "netty-all" % "4.1.82.Final"
-    )
+    ),
+    Docker / packageName := "vertx-web-benchmark",
+    Docker / version := projectVersion,
+    dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
+    dockerExposedPorts ++= Seq(8080)
   )
