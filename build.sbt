@@ -1,6 +1,4 @@
 val projectVersion = "0.1.0"
-import scala.scalanative.build._
-import com.typesafe.sbt.packager.docker._
 
 lazy val root = (project in file("."))
   .settings(
@@ -10,24 +8,25 @@ lazy val root = (project in file("."))
     scalaVersion := "2.13.9"
   )
   .aggregate(
-    `akka-http-benchmark`,
-    `http4s-ce3-benchmark`,
-    `zio-http-benchmark`,
-    `http4s-zio2-benchmark`,
-    `finch-benchmark`,
-    `finatra-http-benchmark`,
-    `http4s-ce3-js-benchmark`,
-    `http4s-ce3-native-benchmark`
+    `akka-http`,
+    `http4s`,
+    `zio-http`,
+    `http4s-zio2`,
+    `finch`,
+    `finatra-http`,
+    `http4s-js`,
+    `http4s-native`,
+    `vertx-web`
   )
 
 val LogbackVersion = "1.4.1"
 val AkkaVersion = "2.6.20"
 val AkkaHttpVersion = "10.2.10"
 
-lazy val `akka-http-benchmark` = (project in file("akka-http-benchmark"))
+lazy val `akka-http` = (project in file("akka-http"))
   .enablePlugins(JavaServerAppPackaging)
   .settings(
-    name := "akka-http-benchmark",
+    name := "akka-http",
     organization := "com.github.gcnyin",
     version := projectVersion,
     scalaVersion := "2.13.9",
@@ -46,10 +45,10 @@ lazy val `akka-http-benchmark` = (project in file("akka-http-benchmark"))
 val Http4sVersion = "0.23.16"
 val CirceVersion = "0.14.3"
 
-lazy val `http4s-ce3-benchmark` = (project in file("http4s-ce3-benchmark"))
+lazy val `http4s` = (project in file("http4s"))
   .enablePlugins(JavaServerAppPackaging)
   .settings(
-    name := "http4s-ce3-benchmark",
+    name := "http4s",
     organization := "com.github.gcnyin",
     version := projectVersion,
     scalaVersion := "2.13.9",
@@ -58,16 +57,16 @@ lazy val `http4s-ce3-benchmark` = (project in file("http4s-ce3-benchmark"))
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
     ),
-    Docker / packageName := "http4s-ce3-benchmark",
+    Docker / packageName := "http4s-benchmark",
     Docker / version := projectVersion,
     dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
     dockerExposedPorts ++= Seq(8080)
   )
 
-lazy val `zio-http-benchmark` = (project in file("zio-http-benchmark"))
+lazy val `zio-http` = (project in file("zio-http"))
   .enablePlugins(JavaServerAppPackaging)
   .settings(
-    name := "zio-http-benchmark",
+    name := "zio-http",
     organization := "com.github.gcnyin",
     version := projectVersion,
     scalaVersion := "2.13.9",
@@ -80,10 +79,10 @@ lazy val `zio-http-benchmark` = (project in file("zio-http-benchmark"))
     dockerExposedPorts ++= Seq(8080)
   )
 
-lazy val `http4s-zio2-benchmark` = (project in file("http4s-zio2-benchmark"))
+lazy val `http4s-zio2` = (project in file("http4s-zio2"))
   .enablePlugins(JavaServerAppPackaging)
   .settings(
-    name := "http4s-zio2-benchmark",
+    name := "http4s-zio2",
     organization := "com.github.gcnyin",
     version := projectVersion,
     scalaVersion := "2.13.9",
@@ -100,10 +99,10 @@ lazy val `http4s-zio2-benchmark` = (project in file("http4s-zio2-benchmark"))
     dockerExposedPorts ++= Seq(8080)
   )
 
-lazy val `finch-benchmark` = (project in file("finch-benchmark"))
+lazy val `finch` = (project in file("finch"))
   .enablePlugins(JavaServerAppPackaging)
   .settings(
-    name := "finch-benchmark",
+    name := "finch",
     organization := "com.github.gcnyin",
     version := projectVersion,
     scalaVersion := "2.13.9",
@@ -117,10 +116,10 @@ lazy val `finch-benchmark` = (project in file("finch-benchmark"))
     dockerExposedPorts ++= Seq(8080)
   )
 
-lazy val `finatra-http-benchmark` = (project in file("finatra-http-benchmark"))
+lazy val `finatra-http` = (project in file("finatra-http"))
   .enablePlugins(JavaServerAppPackaging)
   .settings(
-    name := "finatra-http-benchmark",
+    name := "finatra-http",
     organization := "com.github.gcnyin",
     version := projectVersion,
     scalaVersion := "2.13.9",
@@ -134,10 +133,10 @@ lazy val `finatra-http-benchmark` = (project in file("finatra-http-benchmark"))
     dockerExposedPorts ++= Seq(8080)
   )
 
-lazy val `http4s-ce3-js-benchmark` = (project in file("http4s-ce3-js-benchmark"))
+lazy val `http4s-js` = (project in file("http4s-js"))
   .enablePlugins(ScalaJSPlugin)
   .settings(
-    name := "http4s-ce3-js-benchmark",
+    name := "http4s-js",
     organization := "com.github.gcnyin",
     version := projectVersion,
     scalaVersion := "2.13.9",
@@ -154,14 +153,33 @@ lazy val `http4s-ce3-js-benchmark` = (project in file("http4s-ce3-js-benchmark")
     }
   )
 
-lazy val `http4s-ce3-native-benchmark` = (project in file("http4s-ce3-native-benchmark"))
+lazy val `http4s-native` = (project in file("http4s-native"))
   .enablePlugins(ScalaNativePlugin)
   .settings(
-    name := "http4s-ce3-native-benchmark",
+    name := "http4s-native",
     organization := "com.github.gcnyin",
     version := projectVersion,
     scalaVersion := "2.13.9",
     libraryDependencies ++= Seq(
       "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %%% "http4s-dsl" % Http4sVersion,
-      "com.armanbilge" %%% "epollcat" % "0.1.1"))
+      "com.armanbilge" %%% "epollcat" % "0.1.1"
+    )
+  )
+
+lazy val `vertx-web` = (project in file("vertx-web"))
+  .enablePlugins(JavaServerAppPackaging)
+  .settings(
+    name := "vertx-web",
+    organization := "com.github.gcnyin",
+    version := projectVersion,
+    scalaVersion := "2.13.9",
+    libraryDependencies ++= Seq(
+      "io.vertx" % "vertx-web" % "4.3.3",
+      "io.netty" % "netty-all" % "4.1.82.Final"
+    ),
+    Docker / packageName := "vertx-web-benchmark",
+    Docker / version := projectVersion,
+    dockerBaseImage := "eclipse-temurin:11.0.16_8-jre-focal",
+    dockerExposedPorts ++= Seq(8080)
+  )

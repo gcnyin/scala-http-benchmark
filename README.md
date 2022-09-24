@@ -2,40 +2,40 @@
 
 NOTE! This benchmark is for reference only and does not represent real-world application performance.
 
-`http4s-ce3-native` is not available for now.
-
 ## Build
 
 ### Build http4s native
-```bash
-bash build/build-http4s-native.sh
-```
-
-### Build other modules
-```
-sbt docker:publishLocal
-```
-
-## Build `http4s-ce3-js-benchmark`
-
-For `http4s-ce3-js-benchmark`, to build scala javascript file
 
 ```
-sbt http4s-ce3-js-benchmark/fullLinkJS
+./build/build-http4s-native.sh
 ```
 
-The result javascript file is `http4s-ce3-js-benchmark/target/scala-2.13/http4s-ce3-js-benchmark-opt/main.js`.
+### Build http4s js
+
+Build javascript file
+
+```
+sbt http4s-js/fullLinkJS
+```
+
+The result javascript file is `http4s-js/target/scala-2.13/http4s-js-opt/main.js`.
 
 If you want to run it by `node`
 
 ```
-node http4s-ce3-js-benchmark/target/scala-2.13/http4s-ce3-js-benchmark-opt/main.js
+node http4s-js/target/scala-2.13/http4s-js-opt/main.js
 ```
 
-## Build `http4s-ce3-js-benchmark` docker image
+Build docker image
 
 ```
-./http4s-ce3-js-benchmark/build.sh
+./http4s-js/build.sh
+```
+
+### Build other modules
+
+```
+sbt docker:publishLocal
 ```
 
 ## Run
@@ -44,7 +44,7 @@ Example
 
 ```
 docker run -d --name akka-http-benchmark --cpus="1" --memory="1024m" \
-    -p 8080:8080 akka-http-benchmark:1.0-SNAPSHOT
+    -p 8080:8080 akka-http-benchmark:0.1.0
 ```
 
 ## Test
