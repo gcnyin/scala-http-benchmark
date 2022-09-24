@@ -15,7 +15,8 @@ lazy val root = (project in file("."))
     `finch`,
     `finatra-http`,
     `http4s-js`,
-    `http4s-native`
+    `http4s-native`,
+    `vertx-web`
   )
 
 val LogbackVersion = "1.4.1"
@@ -163,5 +164,18 @@ lazy val `http4s-native` = (project in file("http4s-native"))
       "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %%% "http4s-dsl" % Http4sVersion,
       "com.armanbilge" %%% "epollcat" % "0.1.1"
+    )
+  )
+
+lazy val `vertx-web` = (project in file("vertx-web"))
+  .enablePlugins(ScalaNativePlugin)
+  .settings(
+    name := "vertx-web",
+    organization := "com.github.gcnyin",
+    version := projectVersion,
+    scalaVersion := "2.13.9",
+    libraryDependencies ++= Seq(
+      "io.vertx" % "vertx-web" % "4.3.3",
+      "io.netty" % "netty-all" % "4.1.82.Final"
     )
   )
