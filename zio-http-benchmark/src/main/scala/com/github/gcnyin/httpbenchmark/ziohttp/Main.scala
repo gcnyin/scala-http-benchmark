@@ -9,7 +9,6 @@ object Main extends ZIOAppDefault {
     frozen
   }
 
-  override def run: ZIO[Any, Any, Any] = 
-    Response.text("Hello, world!").freeze.flatmap(frozen => Server.start(8080, app(frozen)))
-      .exitCode
+  override def run: ZIO[Any, Any, Any] =
+    Response.text("Hello, world!").freeze.flatMap(frozen => Server.start(8080, app(frozen))).exitCode
 }

@@ -13,7 +13,7 @@ object Main extends EpollApp {
   }
 
   object Http4sdemoServer {
-    def runForever[F[_] : Async](dsl: Http4sDsl[F]): F[Nothing] = {
+    def runForever[F[_]: Async](dsl: Http4sDsl[F]): F[Nothing] = {
       EmberServerBuilder
         .default[F]
         .withHost(host = ipv4"0.0.0.0")
@@ -23,7 +23,7 @@ object Main extends EpollApp {
         .useForever
     }
 
-    def routes[F[_] : Sync](dsl: Http4sDsl[F]): HttpRoutes[F] = {
+    def routes[F[_]: Sync](dsl: Http4sDsl[F]): HttpRoutes[F] = {
       import dsl._
       HttpRoutes.of[F] { case GET -> Root =>
         Ok("Hello, world!")
