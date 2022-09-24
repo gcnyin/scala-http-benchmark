@@ -29,7 +29,7 @@ node http4s-js/target/scala-2.13/http4s-js-opt/main.js
 Build docker image
 
 ```
-./http4s-ce3-js-benchmark/build.sh
+./http4s-js/build.sh
 ```
 
 ### Build other modules
