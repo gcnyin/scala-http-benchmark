@@ -15,15 +15,15 @@ NOTE! This benchmark is for reference only and does not represent real-world app
 Build javascript file
 
 ```
-sbt http4s-ce3-js-benchmark/fullLinkJS
+sbt http4s-js/fullLinkJS
 ```
 
-The result javascript file is `http4s-ce3-js-benchmark/target/scala-2.13/http4s-ce3-js-benchmark-opt/main.js`.
+The result javascript file is `http4s-js/target/scala-2.13/http4s-js-opt/main.js`.
 
 If you want to run it by `node`
 
 ```
-node http4s-ce3-js-benchmark/target/scala-2.13/http4s-ce3-js-benchmark-opt/main.js
+node http4s-js/target/scala-2.13/http4s-js-opt/main.js
 ```
 
 Build docker image
