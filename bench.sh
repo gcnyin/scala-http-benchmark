@@ -1,7 +1,9 @@
 #!/bin/env bash
 
+SERVER_CPUS=${SERVER_CPUS:-1}
+
 # zio-http
-docker run -d --name zio-http --cpus="1" --memory="1024m" -p 8080:8080 zio-http-benchmark:0.1.0
+docker run -d --name zio-http --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 zio-http-benchmark:0.1.0
 
 sleep 5
 
@@ -22,7 +24,7 @@ echo "zio-http end" >> result.txt
 docker stop zio-http
 
 # finch
-docker run -d --name finch --cpus="1" --memory="1024m" -p 8080:8080 finch-benchmark:0.1.0
+docker run -d --name finch --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 finch-benchmark:0.1.0
 
 sleep 5
 
@@ -43,7 +45,7 @@ echo "finch end" >> result.txt
 docker stop finch
 
 # akka-http
-docker run -d --name akka-http --cpus="1" --memory="1024m" -p 8080:8080 akka-http-benchmark:0.1.0
+docker run -d --name akka-http --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 akka-http-benchmark:0.1.0
 
 sleep 5
 
@@ -64,7 +66,7 @@ echo "akka-http end" >> result.txt
 docker stop akka-http
 
 # http4s
-docker run -d --name http4s --cpus="1" --memory="1024m" -p 8080:8080 http4s-benchmark:0.1.0
+docker run -d --name http4s --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 http4s-benchmark:0.1.0
 
 sleep 5
 
@@ -85,7 +87,7 @@ echo "http4s end" >> result.txt
 docker stop http4s
 
 # finatra-http
-docker run -d --name finatra-http --cpus="1" --memory="1024m" -p 8080:8888 finatra-http-benchmark:0.1.0
+docker run -d --name finatra-http --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8888 finatra-http-benchmark:0.1.0
 
 sleep 5
 
@@ -106,7 +108,7 @@ echo "finatra-http end" >> result.txt
 docker stop finatra-http
 
 # vertx-web
-docker run -d --name vertx-web --cpus="1" --memory="1024m" -p 8080:8888 vertx-web-benchmark:0.1.0
+docker run -d --name vertx-web --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 vertx-web-benchmark:0.1.0
 
 sleep 5
 
@@ -127,7 +129,7 @@ echo "vertx-web end" >> result.txt
 docker stop vertx-web
 
 # http4s-js
-docker run -d --name http4s-js --cpus="1" --memory="1024m" -p 8080:8888 http4s-js-benchmark:0.1.0
+docker run -d --name http4s-js --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 http4s-js-benchmark:0.1.0
 
 sleep 5
 
