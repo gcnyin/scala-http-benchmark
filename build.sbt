@@ -89,6 +89,7 @@ lazy val `http4s-zio2` = (project in file("http4s-zio2"))
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
+      "org.http4s" %% "http4s-circe" % Http4sVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime,
       "dev.zio" %% "zio" % "2.0.2",
       "dev.zio" %% "zio-interop-cats" % "3.3.0"
