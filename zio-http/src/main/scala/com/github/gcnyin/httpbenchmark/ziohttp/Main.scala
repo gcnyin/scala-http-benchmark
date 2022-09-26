@@ -42,7 +42,9 @@ object Main extends ZIOAppDefault {
       .withBinding("localhost", 8080)
       .start.catchAll(t => ZIO.succeed(t.printStackTrace()).exitCode)
       .provide(
-        ServerChannelFactory.auto ++ EventLoopGroup.auto()) //provide number of threads,try nio or uring instead of auto
+        ServerChannelFactory.auto ,
+        EventLoopGroup.auto()
+      ) //provide number of threads,try nio or uring instead of auto
       .fork
     _ <- Console.readLine("Press Enter to stop the server\n")
     _ <- Console.printLine("Interrupting server...")
