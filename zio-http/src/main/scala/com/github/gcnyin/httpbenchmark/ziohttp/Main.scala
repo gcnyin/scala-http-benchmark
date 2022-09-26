@@ -40,7 +40,7 @@ object Main extends ZIOAppDefault {
         Server.disableLeakDetection ++
         Server.disableFlowControl)
       .withBinding("localhost", 8080)
-      .start
+      .start.catchAll(t => ZIO.succeed(t.printStackTrace()).exitCode)
       .provide(
         ServerChannelFactory.auto ++ EventLoopGroup.auto()) //provide number of threads,try nio or uring instead of auto
       .fork
