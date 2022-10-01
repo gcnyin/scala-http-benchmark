@@ -5,11 +5,8 @@ RUN apt-get update
 RUN apt-get install -y llvm libssl-dev curl clang
 
 # Build native binary
-RUN mkdir /root/src
-COPY . /root/src/
-WORKDIR "/root/src"
+WORKDIR /app
+COPY . /app
 RUN sbt http4s-native/nativeLink
 
-RUN cp http4s-native/target/scala-2.13/http4s-native-out /usr/local/bin/http4s-native
-ENTRYPOINT /usr/local/bin/http4s-native
-USER 1001:0
+ENTRYPOINT http4s-native/target/scala-2.13/http4s-native-out
