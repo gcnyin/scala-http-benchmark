@@ -5,7 +5,7 @@ lazy val root = (project in file("."))
     name := "scala-http-benchmark",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.9"
+    scalaVersion := "2.13.10"
   )
   .aggregate(
     `akka-http`,
@@ -20,9 +20,9 @@ lazy val root = (project in file("."))
     `tapir-netty`
   )
 
-val LogbackVersion = "1.4.1"
-val AkkaVersion = "2.6.20"
-val AkkaHttpVersion = "10.2.10"
+val LogbackVersion = "1.4.4"
+val AkkaVersion = "2.7.0"
+val AkkaHttpVersion = "10.4.0"
 
 lazy val `akka-http` = (project in file("akka-http"))
   .enablePlugins(JavaServerAppPackaging)
@@ -30,7 +30,7 @@ lazy val `akka-http` = (project in file("akka-http"))
     name := "akka-http",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
       "com.typesafe.akka" %% "akka-stream" % AkkaVersion,
@@ -52,7 +52,7 @@ lazy val `http4s` = (project in file("http4s"))
     name := "http4s",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
@@ -70,7 +70,7 @@ lazy val `zio-http` = (project in file("zio-http"))
     name := "zio-http",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
       "io.d11" %% "zhttp" % "2.0.0-RC11"
     ),
@@ -86,12 +86,12 @@ lazy val `http4s-zio2` = (project in file("http4s-zio2"))
     name := "http4s-zio2",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime,
-      "dev.zio" %% "zio" % "2.0.2",
+      "dev.zio" %% "zio" % "2.0.3",
       "dev.zio" %% "zio-interop-cats" % "3.3.0"
     ),
     Docker / packageName := "http4s-zio2-benchmark",
@@ -106,7 +106,7 @@ lazy val `finch` = (project in file("finch"))
     name := "finch",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
       "com.github.finagle" %% "finch-core" % "0.34.0",
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
@@ -123,7 +123,7 @@ lazy val `finatra-http` = (project in file("finatra-http"))
     name := "finatra-http",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
       "com.twitter" %% "finatra-http-server" % "22.7.0",
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
@@ -140,7 +140,7 @@ lazy val `http4s-js` = (project in file("http4s-js"))
     name := "http4s-js",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     scalaJSUseMainModuleInitializer := true,
     libraryDependencies ++= Seq(
       "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
@@ -160,7 +160,7 @@ lazy val `http4s-native` = (project in file("http4s-native"))
     name := "http4s-native",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
       "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %%% "http4s-dsl" % Http4sVersion,
@@ -174,10 +174,10 @@ lazy val `vertx-web` = (project in file("vertx-web"))
     name := "vertx-web",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "io.vertx" % "vertx-web" % "4.3.3",
-      "io.netty" % "netty-all" % "4.1.82.Final"
+      "io.vertx" % "vertx-web" % "4.3.4",
+      "io.netty" % "netty-all" % "4.1.85.Final"
     ),
     Docker / packageName := "vertx-web-benchmark",
     Docker / version := projectVersion,
@@ -185,7 +185,7 @@ lazy val `vertx-web` = (project in file("vertx-web"))
     dockerExposedPorts ++= Seq(8080)
   )
 
-val tapirVersion = "1.1.2"
+val tapirVersion = "1.2.1"
 
 lazy val `tapir-netty` = (project in file("tapir-netty"))
   .enablePlugins(JavaServerAppPackaging)
@@ -193,10 +193,10 @@ lazy val `tapir-netty` = (project in file("tapir-netty"))
     name := "tapir-netty",
     organization := "com.github.gcnyin",
     version := projectVersion,
-    scalaVersion := "2.13.9",
+    scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
       "com.softwaremill.sttp.tapir" %% "tapir-netty-server" % tapirVersion,
-      "ch.qos.logback" % "logback-classic" % "1.4.1"
+      "ch.qos.logback" % "logback-classic" % LogbackVersion
     ),
     Docker / packageName := "tapir-netty-benchmark",
     Docker / version := projectVersion,
