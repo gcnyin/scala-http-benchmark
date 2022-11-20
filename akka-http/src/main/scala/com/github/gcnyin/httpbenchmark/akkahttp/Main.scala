@@ -5,11 +5,14 @@ import akka.actor.typed.scaladsl.Behaviors
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
+import org.slf4j.{Logger, LoggerFactory}
 
 import scala.concurrent.ExecutionContextExecutor
 import scala.util.{Failure, Success}
 
 object Main {
+  private val logger: Logger = LoggerFactory.getLogger(Main.getClass)
+
   def main(args: Array[String]): Unit = {
     implicit val system: ActorSystem[Nothing] = ActorSystem(Behaviors.empty, "my-system")
     implicit val executionContext: ExecutionContextExecutor = system.executionContext
@@ -22,8 +25,10 @@ object Main {
       }
 
     Http().newServerAt("0.0.0.0", 8080).bind(route).onComplete {
-      case Failure(exception) => println(exception)
-      case Success(value)     => println(value)
+      case Failure(exception) =>
+        logger.error("error", exception)
+      case Success(value) =>
+        logger.info("{}", value)
     }
   }
 }
