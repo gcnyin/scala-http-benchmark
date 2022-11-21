@@ -176,8 +176,7 @@ lazy val `vertx-web` = (project in file("vertx-web"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "io.vertx" % "vertx-web" % "4.3.5",
-      "io.netty" % "netty-all" % "4.1.85.Final"
+      "io.vertx" % "vertx-web" % "4.3.5"
     ),
     Docker / packageName := "vertx-web-benchmark",
     Docker / version := projectVersion,
