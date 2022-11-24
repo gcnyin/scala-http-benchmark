@@ -13,13 +13,11 @@ wrk -t10 -c200 -d60s "http://127.0.0.1:8080"
 
 echo "zio-http start"
 
-echo "zio-http start" >> result.txt
+echo "## zio-httn" >> result.md
 
-wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.txt
+wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.md
 
 echo "zio-http end"
-
-echo "zio-http end" >> result.txt
 
 docker stop zio-http
 
@@ -34,13 +32,11 @@ wrk -t10 -c200 -d60s "http://127.0.0.1:8080"
 
 echo "finch start"
 
-echo "finch start" >> result.txt
+echo "## finch" >> result.md
 
-wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.txt
+wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.md
 
 echo "finch end"
-
-echo "finch end" >> result.txt
 
 docker stop finch
 
@@ -55,13 +51,11 @@ wrk -t10 -c200 -d60s "http://127.0.0.1:8080"
 
 echo "akka-http start"
 
-echo "akka-http start" >> result.txt
+echo "## akka-http" >> result.md
 
-wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.txt
+wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.md
 
 echo "akka-http end"
-
-echo "akka-http end" >> result.txt
 
 docker stop akka-http
 
@@ -76,13 +70,11 @@ wrk -t10 -c200 -d60s "http://127.0.0.1:8080"
 
 echo "http4s start"
 
-echo "http4s start" >> result.txt
+echo "## http4s" >> result.md
 
-wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.txt
+wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.md
 
 echo "http4s end"
-
-echo "http4s end" >> result.txt
 
 docker stop http4s
 
@@ -95,15 +87,15 @@ echo "finatra-http warmup"
 
 wrk -t10 -c200 -d60s "http://127.0.0.1:8080"
 
-echo "finatra-http start" >> result.txt
-
 echo "finatra-http start"
 
-wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.txt
+echo "## finatra-http" >> result.md
+
+wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.md
 
 echo "finatra-http end"
 
-echo "finatra-http end" >> result.txt
+echo "## finatra-http" >> result.md
 
 docker stop finatra-http
 
@@ -116,35 +108,12 @@ echo "vertx-web warmup"
 
 wrk -t10 -c200 -d60s "http://127.0.0.1:8080"
 
-echo "vertx-web start" >> result.txt
-
 echo "vertx-web start"
 
-wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.txt
+echo "## vertx-web" >> result.md
+
+wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.md
 
 echo "vertx-web end"
 
-echo "vertx-web end" >> result.txt
-
 docker stop vertx-web
-
-# http4s-js
-docker run -d --name http4s-js --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 http4s-js-benchmark:0.1.0
-
-sleep 5
-
-echo "http4s-js warmup"
-
-wrk -t10 -c200 -d60s "http://127.0.0.1:8080"
-
-echo "http4s-js start" >> result.txt
-
-echo "http4s-js start"
-
-wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.txt
-
-echo "http4s-js end"
-
-echo "http4s-js end" >> result.txt
-
-docker stop http4s-js
