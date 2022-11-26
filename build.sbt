@@ -108,7 +108,7 @@ lazy val `finch` = (project in file("finch"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "com.github.finagle" %% "finch-core" % "0.34.0",
+      "com.github.finagle" %% "finch-core" % "0.34.1",
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
     ),
     Docker / packageName := "finch-benchmark",
