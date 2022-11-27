@@ -1,9 +1,10 @@
 #!/bin/env bash
 
 SERVER_CPUS=${SERVER_CPUS:-1}
+SERVER_MEMORY=${SERVER_MEMORY:-1024m}
 
 # akka-http
-docker run -d --name akka-http --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 akka-http-benchmark:0.1.0
+docker run -d --name akka-http --cpus "${SERVER_CPUS}" --memory="${SERVER_MEMORY}" -p 8080:8080 akka-http-benchmark:0.1.0
 
 sleep 5
 
@@ -23,7 +24,7 @@ docker stop akka-http
 
 
 # finatra-http
-docker run -d --name finatra-http --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8888 finatra-http-benchmark:0.1.0
+docker run -d --name finatra-http --cpus "${SERVER_CPUS}" --memory="${SERVER_MEMORY}" -p 8080:8888 finatra-http-benchmark:0.1.0
 
 sleep 5
 
@@ -39,13 +40,11 @@ wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.md
 
 echo "finatra-http end"
 
-echo "## finatra-http" >> result.md
-
 docker stop finatra-http
 
 
 # finch
-docker run -d --name finch --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 finch-benchmark:0.1.0
+docker run -d --name finch --cpus "${SERVER_CPUS}" --memory="${SERVER_MEMORY}" -p 8080:8080 finch-benchmark:0.1.0
 
 sleep 5
 
@@ -65,7 +64,7 @@ docker stop finch
 
 
 # http4s
-docker run -d --name http4s --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 http4s-benchmark:0.1.0
+docker run -d --name http4s --cpus "${SERVER_CPUS}" --memory="${SERVER_MEMORY}" -p 8080:8080 http4s-benchmark:0.1.0
 
 sleep 5
 
@@ -85,7 +84,7 @@ docker stop http4s
 
 
 # http4s-zio2
-docker run -d --name http4s-zio2 --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 http4s-zio2-benchmark:0.1.0
+docker run -d --name http4s-zio2 --cpus "${SERVER_CPUS}" --memory="${SERVER_MEMORY}" -p 8080:8080 http4s-zio2-benchmark:0.1.0
 
 sleep 5
 
@@ -104,28 +103,8 @@ echo "http4s-zio2 end"
 docker stop http4s-zio2
 
 
-# tapir-netty
-docker run -d --name tapir-netty --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 tapir-netty-benchmark:0.1.0
-
-sleep 5
-
-echo "tapir-netty warmup"
-
-wrk -t10 -c200 -d60s "http://127.0.0.1:8080"
-
-echo "tapir-netty start"
-
-echo "## tapir-netty" >> result.md
-
-wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.md
-
-echo "tapir-netty end"
-
-docker stop tapir-netty
-
-
 # zio-http
-docker run -d --name zio-http --cpus "${SERVER_CPUS}" --memory="1024m" -p 8080:8080 zio-http-benchmark:0.1.0
+docker run -d --name zio-http --cpus "${SERVER_CPUS}" --memory="${SERVER_MEMORY}" -p 8080:8080 zio-http-benchmark:0.1.0
 
 sleep 5
 
