@@ -1,8 +1,8 @@
 package com.github.gcnyin.httpbenchmark.ziohttp
 
-import zhttp.http._
-import zhttp.service.Server
 import zio._
+import zio.http._
+import zio.http.model.Method
 
 object Main extends ZIOAppDefault {
   val app: Http[Any, Nothing, Request, Response] = {
@@ -12,6 +12,6 @@ object Main extends ZIOAppDefault {
   }
 
   override def run: ZIO[Any, Any, Any] = {
-    Server.start(8080, app).exitCode
+    Server.serve(app).provide(Server.default)
   }
 }

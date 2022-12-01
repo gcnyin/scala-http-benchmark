@@ -9,15 +9,15 @@ lazy val root = (project in file("."))
   )
   .aggregate(
     `akka-http`,
-    `http4s`,
-    `zio-http`,
-    `http4s-zio2`,
-    `finch`,
     `finatra-http`,
+    `finch`,
+    `http4s`,
     `http4s-js`,
     `http4s-native`,
+    `http4s-zio2`,
+    `tapir-netty`,
     `vertx-web`,
-    `tapir-netty`
+    `zio-http`,
   )
 
 val LogbackVersion = "1.4.5"
@@ -72,7 +72,7 @@ lazy val `zio-http` = (project in file("zio-http"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "io.d11" %% "zhttp" % "2.0.0-RC11"
+      "dev.zio" %% "zio-http" % "0.0.3"
     ),
     Docker / packageName := "zio-http-benchmark",
     Docker / version := projectVersion,
