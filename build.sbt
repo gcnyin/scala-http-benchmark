@@ -91,7 +91,7 @@ lazy val `http4s-zio2` = (project in file("http4s-zio2"))
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime,
-      "dev.zio" %% "zio" % "2.0.4",
+      "dev.zio" %% "zio" % "2.0.5",
       "dev.zio" %% "zio-interop-cats" % "3.3.0"
     ),
     Docker / packageName := "http4s-zio2-benchmark",
@@ -176,7 +176,7 @@ lazy val `vertx-web` = (project in file("vertx-web"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "io.vertx" % "vertx-web" % "4.3.5"
+      "io.vertx" % "vertx-web" % "4.3.6"
     ),
     Docker / packageName := "vertx-web-benchmark",
     Docker / version := projectVersion,
