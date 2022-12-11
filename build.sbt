@@ -54,6 +54,7 @@ lazy val `http4s` = (project in file("http4s"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
+      "org.typelevel" %% "cats-effect" % "3.5-01f5b3a",
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
@@ -88,6 +89,7 @@ lazy val `http4s-zio2` = (project in file("http4s-zio2"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
+      "org.typelevel" %% "cats-effect" % "3.5-01f5b3a",
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime,
@@ -143,6 +145,7 @@ lazy val `http4s-js` = (project in file("http4s-js"))
     scalaVersion := "2.13.10",
     scalaJSUseMainModuleInitializer := true,
     libraryDependencies ++= Seq(
+      "org.typelevel" %%% "cats-effect" % "3.5-01f5b3a",
       "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %%% "http4s-dsl" % Http4sVersion
     ),
@@ -162,9 +165,10 @@ lazy val `http4s-native` = (project in file("http4s-native"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
+      "org.typelevel" %%% "cats-effect" % "3.5-01f5b3a",
       "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %%% "http4s-dsl" % Http4sVersion,
-      "com.armanbilge" %%% "epollcat" % "0.1.2"
+      "com.armanbilge" %%% "epollcat" % "0.1.3"
     )
   )
 
@@ -176,7 +180,8 @@ lazy val `vertx-web` = (project in file("vertx-web"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "io.vertx" % "vertx-web" % "4.3.6"
+      "io.vertx" % "vertx-web" % "4.3.6",
+      "ch.qos.logback" % "logback-classic" % LogbackVersion
     ),
     Docker / packageName := "vertx-web-benchmark",
     Docker / version := projectVersion,
