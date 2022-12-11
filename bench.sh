@@ -83,24 +83,24 @@ echo "http4s end"
 docker stop http4s
 
 
-# http4s-zio2
-docker run -d --name http4s-zio2 --cpus "${SERVER_CPUS}" --memory="${SERVER_MEMORY}" -p 8080:8080 http4s-zio2-benchmark:0.1.0
+# vertx-web
+docker run -d --name vertx-web --cpus "${SERVER_CPUS}" --memory="${SERVER_MEMORY}" -p 8080:8080 vertx-web-benchmark:0.1.0
 
 sleep 5
 
-echo "http4s-zio2 warmup"
+echo "vertx-web warmup start"
 
 wrk -t10 -c200 -d60s "http://127.0.0.1:8080"
 
-echo "http4s-zio2 start"
+echo "vertx-web start"
 
-echo "## http4s-zio2" >> result.md
+echo "## vertx-web" >> result.md
 
 wrk -t10 -c200 -d60s "http://127.0.0.1:8080" >> result.md
 
-echo "http4s-zio2 end"
+echo "vertx-web end"
 
-docker stop http4s-zio2
+docker stop vertx-web
 
 
 # zio-http

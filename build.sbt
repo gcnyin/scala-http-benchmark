@@ -132,7 +132,7 @@ lazy val `finatra-http` = (project in file("finatra-http"))
     ),
     Docker / packageName := "finatra-http-benchmark",
     Docker / version := projectVersion,
-    dockerBaseImage := "eclipse-temurin:19.0.1_10-jre-focal",
+    dockerBaseImage := "eclipse-temurin:11.0.17_8-jre-focal",
     dockerExposedPorts ++= Seq(8080)
   )
 
