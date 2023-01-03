@@ -45,6 +45,7 @@ lazy val `akka-http` = (project in file("akka-http"))
 
 val Http4sVersion = "0.23.16"
 val CirceVersion = "0.14.3"
+val CatsEffectVersion = "3.5-6581dc4"
 
 lazy val `http4s` = (project in file("http4s"))
   .enablePlugins(JavaServerAppPackaging)
@@ -54,7 +55,7 @@ lazy val `http4s` = (project in file("http4s"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect" % "3.5-01f5b3a",
+      "org.typelevel" %% "cats-effect" % CatsEffectVersion,
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
@@ -89,7 +90,7 @@ lazy val `http4s-zio2` = (project in file("http4s-zio2"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "org.typelevel" %% "cats-effect" % "3.5-9ba870f",
+      "org.typelevel" %% "cats-effect" % CatsEffectVersion,
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime,
@@ -127,7 +128,7 @@ lazy val `finatra-http` = (project in file("finatra-http"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "com.twitter" %% "finatra-http-server" % "22.7.0",
+      "com.twitter" %% "finatra-http-server" % "22.12.0",
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime
     ),
     Docker / packageName := "finatra-http-benchmark",
@@ -145,7 +146,7 @@ lazy val `http4s-js` = (project in file("http4s-js"))
     scalaVersion := "2.13.10",
     scalaJSUseMainModuleInitializer := true,
     libraryDependencies ++= Seq(
-      "org.typelevel" %%% "cats-effect" % "3.5-01f5b3a",
+      "org.typelevel" %%% "cats-effect" % CatsEffectVersion,
       "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %%% "http4s-dsl" % Http4sVersion
     ),
@@ -165,7 +166,7 @@ lazy val `http4s-native` = (project in file("http4s-native"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "org.typelevel" %%% "cats-effect" % "3.5-01f5b3a",
+      "org.typelevel" %%% "cats-effect" % CatsEffectVersion,
       "org.http4s" %%% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %%% "http4s-dsl" % Http4sVersion,
       "com.armanbilge" %%% "epollcat" % "0.1.3"
