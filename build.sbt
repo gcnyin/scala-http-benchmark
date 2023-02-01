@@ -43,7 +43,7 @@ lazy val `akka-http` = (project in file("akka-http"))
     dockerExposedPorts ++= Seq(8080)
   )
 
-val Http4sVersion = "0.23.16"
+val Http4sVersion = "0.23.18"
 val CirceVersion = "0.14.3"
 val CatsEffectVersion = "3.5-6581dc4"
 
@@ -74,7 +74,7 @@ lazy val `zio-http` = (project in file("zio-http"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "dev.zio" %% "zio-http" % "0.0.3"
+      "dev.zio" %% "zio-http" % "0.0.4"
     ),
     Docker / packageName := "zio-http-benchmark",
     Docker / version := projectVersion,
@@ -94,7 +94,7 @@ lazy val `http4s-zio2` = (project in file("http4s-zio2"))
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime,
-      "dev.zio" %% "zio" % "2.0.5",
+      "dev.zio" %% "zio" % "2.0.6",
       "dev.zio" %% "zio-interop-cats" % "3.3.0"
     ),
     Docker / packageName := "http4s-zio2-benchmark",
@@ -190,7 +190,7 @@ lazy val `vertx-web` = (project in file("vertx-web"))
     dockerExposedPorts ++= Seq(8080)
   )
 
-val tapirVersion = "1.2.4"
+val tapirVersion = "1.2.7"
 
 lazy val `tapir-netty` = (project in file("tapir-netty"))
   .enablePlugins(JavaServerAppPackaging)
