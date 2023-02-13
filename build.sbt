@@ -45,7 +45,7 @@ lazy val `akka-http` = (project in file("akka-http"))
 
 val Http4sVersion = "0.23.18"
 val CirceVersion = "0.14.3"
-val CatsEffectVersion = "3.5-6581dc4"
+val CatsEffectVersion = "3.5-e4f2b71"
 
 lazy val `http4s` = (project in file("http4s"))
   .enablePlugins(JavaServerAppPackaging)
@@ -94,7 +94,7 @@ lazy val `http4s-zio2` = (project in file("http4s-zio2"))
       "org.http4s" %% "http4s-ember-server" % Http4sVersion,
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime,
-      "dev.zio" %% "zio" % "2.0.6",
+      "dev.zio" %% "zio" % "2.0.8",
       "dev.zio" %% "zio-interop-cats" % "3.3.0"
     ),
     Docker / packageName := "http4s-zio2-benchmark",
@@ -181,7 +181,7 @@ lazy val `vertx-web` = (project in file("vertx-web"))
     version := projectVersion,
     scalaVersion := "2.13.10",
     libraryDependencies ++= Seq(
-      "io.vertx" % "vertx-web" % "4.3.7",
+      "io.vertx" % "vertx-web" % "4.3.8",
       "ch.qos.logback" % "logback-classic" % LogbackVersion
     ),
     Docker / packageName := "vertx-web-benchmark",
@@ -190,7 +190,7 @@ lazy val `vertx-web` = (project in file("vertx-web"))
     dockerExposedPorts ++= Seq(8080)
   )
 
-val tapirVersion = "1.2.7"
+val tapirVersion = "1.2.8"
 
 lazy val `tapir-netty` = (project in file("tapir-netty"))
   .enablePlugins(JavaServerAppPackaging)
