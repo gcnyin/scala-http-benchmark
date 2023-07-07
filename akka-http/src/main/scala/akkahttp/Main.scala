@@ -1,4 +1,4 @@
-package com.github.gcnyin.httpbenchmark.akkahttp
+package akkahttp
 
 import akka.actor.typed.ActorSystem
 import akka.actor.typed.scaladsl.Behaviors

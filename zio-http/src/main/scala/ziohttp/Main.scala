@@ -1,12 +1,15 @@
-package com.github.gcnyin.httpbenchmark.ziohttp
+package ziohttp
 
 import zio._
 import zio.http._
 
+import java.util.Date
+
 object Main extends ZIOAppDefault {
   val app: Http[Any, Nothing, Request, Response] = {
     Http.collect[Request] { case Method.GET -> Root =>
-      Response.text("""
+      Response
+        .text("""
           |<!DOCTYPE html>
           |<html>
           |<body>
@@ -17,6 +20,7 @@ object Main extends ZIOAppDefault {
           |</body>
           |</html>
           |""".stripMargin)
+        .addHeader("Date", new Date().toString)
     }
   }
 
