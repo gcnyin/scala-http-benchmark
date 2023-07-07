@@ -5,7 +5,7 @@ import zio.http._
 
 object Main extends ZIOAppDefault {
   val app: Http[Any, Nothing, Request, Response] = {
-    Http.collect[Request] { case Method.GET -> !! =>
+    Http.collect[Request] { case Method.GET -> Root =>
       Response.text("""
           |<!DOCTYPE html>
           |<html>
