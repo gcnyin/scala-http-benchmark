@@ -23,7 +23,17 @@ object Main {
       router.route(HttpMethod.GET, "/").handler { ctx =>
         val response = ctx.response
         response.putHeader("Content-Type", "text/plain; charset=utf-8")
-        response.end("Hello, world!")
+        response.end("""
+          |<!DOCTYPE html>
+          |<html>
+          |<body>
+          |
+          |<h1>My First Heading</h1>
+          |<p>My first paragraph.</p>
+          |
+          |</body>
+          |</html>
+          |""".stripMargin)
       }
       server.requestHandler(router).listen(8080).andThen { _ =>
         logger.info("verticle deployed: {}", deploymentID())

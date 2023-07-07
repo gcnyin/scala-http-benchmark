@@ -2,12 +2,21 @@ package com.github.gcnyin.httpbenchmark.ziohttp
 
 import zio._
 import zio.http._
-import zio.http.model.Method
 
 object Main extends ZIOAppDefault {
   val app: Http[Any, Nothing, Request, Response] = {
     Http.collect[Request] { case Method.GET -> !! =>
-      Response.text("Hello, world!")
+      Response.text("""
+          |<!DOCTYPE html>
+          |<html>
+          |<body>
+          |
+          |<h1>My First Heading</h1>
+          |<p>My first paragraph.</p>
+          |
+          |</body>
+          |</html>
+          |""".stripMargin)
     }
   }
 

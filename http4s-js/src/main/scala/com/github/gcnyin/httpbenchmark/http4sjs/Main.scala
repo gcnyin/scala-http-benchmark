@@ -25,7 +25,17 @@ object Main extends IOApp {
     def routes[F[_]: Sync](dsl: Http4sDsl[F]): HttpRoutes[F] = {
       import dsl._
       HttpRoutes.of[F] { case GET -> Root =>
-        Ok("Hello, world!")
+        Ok("""
+          |<!DOCTYPE html>
+          |<html>
+          |<body>
+          |
+          |<h1>My First Heading</h1>
+          |<p>My first paragraph.</p>
+          |
+          |</body>
+          |</html>
+          |""".stripMargin)
       }
     }
   }

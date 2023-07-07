@@ -20,7 +20,22 @@ object Main {
     val route =
       pathSingleSlash {
         get {
-          complete(HttpEntity(ContentTypes.`text/plain(UTF-8)`, "Hello, world!"))
+          complete(
+            HttpEntity(
+              ContentTypes.`text/plain(UTF-8)`,
+              """
+          |<!DOCTYPE html>
+          |<html>
+          |<body>
+          |
+          |<h1>My First Heading</h1>
+          |<p>My first paragraph.</p>
+          |
+          |</body>
+          |</html>
+          |""".stripMargin
+            )
+          )
         }
       }
 

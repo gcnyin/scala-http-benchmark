@@ -10,7 +10,17 @@ object Endpoints {
     .in("")
     .out(stringBody)
 
-  val helloServerEndpoint: ServerEndpoint[Any, Future] = root.serverLogicSuccess(_ => Future.successful(s"Hello, world!"))
+  val helloServerEndpoint: ServerEndpoint[Any, Future] = root.serverLogicSuccess(_ => Future.successful(s"""
+          |<!DOCTYPE html>
+          |<html>
+          |<body>
+          |
+          |<h1>My First Heading</h1>
+          |<p>My first paragraph.</p>
+          |
+          |</body>
+          |</html>
+          |""".stripMargin))
 
   val apiEndpoints: List[ServerEndpoint[Any, Future]] = List(helloServerEndpoint)
 }

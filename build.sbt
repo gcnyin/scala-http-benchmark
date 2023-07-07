@@ -74,7 +74,7 @@ lazy val `zio-http` = (project in file("zio-http"))
     version := projectVersion,
     scalaVersion := "2.13.11",
     libraryDependencies ++= Seq(
-      "dev.zio" %% "zio-http" % "0.0.5"
+      "dev.zio" %% "zio-http" % "3.0.0-RC2"
     ),
     Docker / packageName := "zio-http-benchmark",
     Docker / version := projectVersion,

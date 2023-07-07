@@ -12,7 +12,17 @@ object Main extends ZIOAppDefault {
 
   object getRoutes extends Http4sDsl[Task] {
     val zio_routes: HttpRoutes[Task] = HttpRoutes.of { case GET -> Root =>
-      Ok("Hello, world!")
+      Ok("""
+          |<!DOCTYPE html>
+          |<html>
+          |<body>
+          |
+          |<h1>My First Heading</h1>
+          |<p>My first paragraph.</p>
+          |
+          |</body>
+          |</html>
+          |""".stripMargin)
     }
   }
 

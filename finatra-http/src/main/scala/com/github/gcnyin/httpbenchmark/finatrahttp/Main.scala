@@ -14,6 +14,16 @@ class HelloWorldServer extends HttpServer {
 
 class HelloWorldController extends Controller {
   get("/") { _: Request =>
-    "Hello, world!"
+    """
+          |<!DOCTYPE html>
+          |<html>
+          |<body>
+          |
+          |<h1>My First Heading</h1>
+          |<p>My first paragraph.</p>
+          |
+          |</body>
+          |</html>
+          |""".stripMargin
   }
 }
