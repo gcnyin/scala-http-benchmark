@@ -190,7 +190,7 @@ lazy val `vertx-web` = (project in file("vertx-web"))
     dockerExposedPorts ++= Seq(8080)
   )
 
-val tapirVersion = "1.6.0"
+val tapirVersion = "1.6.1"
 
 lazy val `tapir-netty` = (project in file("tapir-netty"))
   .enablePlugins(JavaServerAppPackaging)
