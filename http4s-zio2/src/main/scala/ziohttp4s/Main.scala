@@ -10,10 +10,11 @@ import zio.{ExitCode, Scope, Task, URIO, ZIO, ZIOAppArgs, ZIOAppDefault, ZLayer}
 
 object Main extends ZIOAppDefault {
 
-  object getRoutes extends Http4sDsl[Task] {
-    val zio_routes: HttpRoutes[Task] = HttpRoutes.of { case GET -> Root =>
-      Ok("Hello, world!")
-    }
+  val dsl = new Http4sDsl[Task] {}
+  import dsl._
+
+  val zioRoutes: HttpRoutes[Task] = HttpRoutes.of { case GET -> Root =>
+    Ok("Hello, world!")
   }
 
   val zioHttp4sLayer: ZLayer[Any, Throwable, Server] =
@@ -22,14 +23,14 @@ object Main extends ZIOAppDefault {
         .default[Task]
         .withHost(host = ipv4"0.0.0.0")
         .withPort(port = port"8080")
-        .withHttpApp(getRoutes.zio_routes.orNotFound)
+        .withHttpApp(zioRoutes.orNotFound)
         .build
         .toScopedZIO
     }
 
-  val entry_point: URIO[Any, ExitCode] = ZIO.never.exitCode
+  val entryPoint: URIO[Any, ExitCode] = ZIO.never.exitCode
 
   def run: ZIO[Any with ZIOAppArgs with Scope, Throwable, ExitCode] =
-    entry_point.provideLayer(zioHttp4sLayer).catchAll(t => ZIO.succeed(t.printStackTrace()).map(_ => ExitCode.failure))
+    entryPoint.provideLayer(zioHttp4sLayer).map(_ => ExitCode.success)
 
 }

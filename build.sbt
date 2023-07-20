@@ -95,7 +95,7 @@ lazy val `http4s-zio2` = (project in file("http4s-zio2"))
       "org.http4s" %% "http4s-dsl" % Http4sVersion,
       "ch.qos.logback" % "logback-classic" % LogbackVersion % Runtime,
       "dev.zio" %% "zio" % "2.0.15",
-      "dev.zio" %% "zio-interop-cats" % "23.0.03"
+      "dev.zio" %% "zio-interop-cats" % "23.0.0.8"
     ),
     Docker / packageName := "http4s-zio2-benchmark",
     Docker / version := projectVersion,
