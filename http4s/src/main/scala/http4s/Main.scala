@@ -6,8 +6,6 @@ import org.http4s.HttpRoutes
 import org.http4s.dsl.Http4sDsl
 import org.http4s.ember.server.EmberServerBuilder
 
-import java.util.Date
-
 object Main extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
     Http4sdemoServer.runForever(org.http4s.dsl.io).as(ExitCode.Success)
@@ -27,20 +25,7 @@ object Main extends IOApp {
     def routes[F[_]: Sync](dsl: Http4sDsl[F]): HttpRoutes[F] = {
       import dsl._
       HttpRoutes.of[F] { case GET -> Root =>
-        Ok(
-          """
-          |<!DOCTYPE html>
-          |<html>
-          |<body>
-          |
-          |<h1>My First Heading</h1>
-          |<p>My first paragraph.</p>
-          |
-          |</body>
-          |</html>
-          |""".stripMargin,
-          "Date" -> new Date().toString
-        )
+        Ok("Hello, world!")
       }
     }
   }

@@ -39,12 +39,11 @@ lazy val `akka-http` = (project in file("akka-http"))
     ),
     Docker / packageName := "akka-http-benchmark",
     Docker / version := projectVersion,
-    dockerBaseImage := "eclipse-temurin:19.0.1_10-jre-focal",
+    dockerBaseImage := "eclipse-temurin:17.0.7_7-jre-jammy",
     dockerExposedPorts ++= Seq(8080)
   )
 
-val Http4sVersion = "0.23.22"
-val CirceVersion = "0.14.3"
+val Http4sVersion = "0.23.23"
 val CatsEffectVersion = "3.5.1"
 
 lazy val `http4s` = (project in file("http4s"))
@@ -62,7 +61,7 @@ lazy val `http4s` = (project in file("http4s"))
     ),
     Docker / packageName := "http4s-benchmark",
     Docker / version := projectVersion,
-    dockerBaseImage := "eclipse-temurin:19.0.1_10-jre-focal",
+    dockerBaseImage := "eclipse-temurin:17.0.7_7-jre-jammy",
     dockerExposedPorts ++= Seq(8080)
   )
 
@@ -78,7 +77,7 @@ lazy val `zio-http` = (project in file("zio-http"))
     ),
     Docker / packageName := "zio-http-benchmark",
     Docker / version := projectVersion,
-    dockerBaseImage := "eclipse-temurin:19.0.1_10-jre-focal",
+    dockerBaseImage := "eclipse-temurin:17.0.7_7-jre-jammy",
     dockerExposedPorts ++= Seq(8080)
   )
 
@@ -99,7 +98,7 @@ lazy val `http4s-zio2` = (project in file("http4s-zio2"))
     ),
     Docker / packageName := "http4s-zio2-benchmark",
     Docker / version := projectVersion,
-    dockerBaseImage := "eclipse-temurin:19.0.1_10-jre-focal",
+    dockerBaseImage := "eclipse-temurin:17.0.7_7-jre-jammy",
     dockerExposedPorts ++= Seq(8080)
   )
 
@@ -116,7 +115,7 @@ lazy val `finch` = (project in file("finch"))
     ),
     Docker / packageName := "finch-benchmark",
     Docker / version := projectVersion,
-    dockerBaseImage := "eclipse-temurin:19.0.1_10-jre-focal",
+    dockerBaseImage := "eclipse-temurin:17.0.7_7-jre-jammy",
     dockerExposedPorts ++= Seq(8080)
   )
 
@@ -186,11 +185,11 @@ lazy val `vertx-web` = (project in file("vertx-web"))
     ),
     Docker / packageName := "vertx-web-benchmark",
     Docker / version := projectVersion,
-    dockerBaseImage := "eclipse-temurin:19.0.1_10-jre-focal",
+    dockerBaseImage := "eclipse-temurin:17.0.7_7-jre-jammy",
     dockerExposedPorts ++= Seq(8080)
   )
 
-val tapirVersion = "1.6.1"
+val tapirVersion = "1.6.2"
 
 lazy val `tapir-netty` = (project in file("tapir-netty"))
   .enablePlugins(JavaServerAppPackaging)
@@ -205,6 +204,6 @@ lazy val `tapir-netty` = (project in file("tapir-netty"))
     ),
     Docker / packageName := "tapir-netty-benchmark",
     Docker / version := projectVersion,
-    dockerBaseImage := "eclipse-temurin:19.0.1_10-jre-focal",
+    dockerBaseImage := "eclipse-temurin:17.0.7_7-jre-jammy",
     dockerExposedPorts ++= Seq(8080)
   )

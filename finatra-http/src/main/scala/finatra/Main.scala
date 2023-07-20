@@ -1,8 +1,8 @@
-package com.github.gcnyin.httpbenchmark.finatrahttp
+package finatra
 
 import com.twitter.finagle.http.Request
-import com.twitter.finatra.http.{Controller, HttpServer}
 import com.twitter.finatra.http.routing.HttpRouter
+import com.twitter.finatra.http.{Controller, HttpServer}
 
 object Main extends HelloWorldServer
 
@@ -14,16 +14,6 @@ class HelloWorldServer extends HttpServer {
 
 class HelloWorldController extends Controller {
   get("/") { _: Request =>
-    """
-          |<!DOCTYPE html>
-          |<html>
-          |<body>
-          |
-          |<h1>My First Heading</h1>
-          |<p>My first paragraph.</p>
-          |
-          |</body>
-          |</html>
-          |""".stripMargin
+    "Hello, world!"
   }
 }
