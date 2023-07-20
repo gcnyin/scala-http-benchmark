@@ -17,6 +17,7 @@ lazy val root = (project in file("."))
     `http4s-zio2`,
     `tapir-netty`,
     `vertx-web`,
+    `tapir-vertx`,
     `zio-http`,
   )
 
@@ -203,6 +204,23 @@ lazy val `tapir-netty` = (project in file("tapir-netty"))
       "ch.qos.logback" % "logback-classic" % LogbackVersion
     ),
     Docker / packageName := "tapir-netty-benchmark",
+    Docker / version := projectVersion,
+    dockerBaseImage := "eclipse-temurin:17.0.7_7-jre-jammy",
+    dockerExposedPorts ++= Seq(8080)
+  )
+
+lazy val `tapir-vertx` = (project in file("tapir-vertx"))
+  .enablePlugins(JavaServerAppPackaging)
+  .settings(
+    name := "tapir-vertx",
+    organization := "com.github.gcnyin",
+    version := projectVersion,
+    scalaVersion := "2.13.11",
+    libraryDependencies ++= Seq(
+      "com.softwaremill.sttp.tapir" %% "tapir-vertx-server" % tapirVersion,
+      "ch.qos.logback" % "logback-classic" % LogbackVersion
+    ),
+    Docker / packageName := "tapir-vertx-benchmark",
     Docker / version := projectVersion,
     dockerBaseImage := "eclipse-temurin:17.0.7_7-jre-jammy",
     dockerExposedPorts ++= Seq(8080)
